@@ -21,4 +21,7 @@ const user1 = {
   ],
 };
 
-module.exports = User;
+module.exports = {
+  User,
+  user1,
+};
