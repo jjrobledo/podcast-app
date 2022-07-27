@@ -1,7 +1,11 @@
-let Parser = require("rss-parser");
-let parser = new Parser();
+const { user1 } = require("../models/user.model.js");
 
-(async () => {
-  let feed = await parser.parseURL("https://theblogmillionaire.libsyn.com/rss");
-  console.log(feed);
-})();
+const getPodcastFromFeed = require("podparse");
+
+fetch(user1.feedList[0])
+  .then((res) => res.text())
+  .then((data) => {
+    const podcast = getPodcastFromFeed(data);
+    console.log(podcast.meta);
+    console.log(podcast.episodes[0]);
+  });

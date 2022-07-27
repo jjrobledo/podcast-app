@@ -14,6 +14,6 @@
     "express": "^4.18.1",
     "mongoose": "^6.5.0",
     "morgan": "^1.10.0",
-    "rss-parser": "^3.12.0"
+    "podparse": "^1.5.1"
   }
 }

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   feedList: { type: Array },
 });
 
-const User = new nongoose.model("User", userSchema);
+const User = new mongoose.model("User", userSchema);
 
 // Dummy data
 
