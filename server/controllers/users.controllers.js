@@ -6,6 +6,6 @@ fetch(user1.feedList[0])
   .then((res) => res.text())
   .then((data) => {
     const podcast = getPodcastFromFeed(data);
-    console.log(podcast.meta);
-    console.log(podcast.episodes[0]);
+    //console.log(podcast.meta);
+    console.log(Array.isArray(podcast.episodes));
   });
