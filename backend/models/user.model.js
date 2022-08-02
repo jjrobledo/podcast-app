@@ -1,25 +1,34 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  feedList: { type: Array },
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
-const User = new mongoose.model("User", userSchema);
+// static signup method
+userSchema.statics.signup = async function (email, password) {
+  const exists = await this.findOne({ email });
 
-// Dummy data
+  if (exists) {
+    throw Error("Email already in use");
+  }
 
-const user1 = {
-  id: "df11d34",
-  username: "user31",
-  email: "user31@email.com",
-  feedList: [
-    "https://theblogmillionaire.libsyn.com/rss",
-    "https://feeds.simplecast.com/BqbsxVfO",
-  ],
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
+  const user = await this.create({ email, password: hash });
+
+  return user;
 };
 
-module.exports = {
-  User,
-};
+module.exports = mongoose.model("User", userSchema);
