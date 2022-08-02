@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getFeed,
   addPodcast,
+  getPodcast,
   deletePodcast,
   updatePodcast,
 } = require("../controllers/podcast.controllers.js");
@@ -12,6 +13,9 @@ router.get("/", getFeed);
 
 // POST a podcast
 router.post("/", addPodcast);
+
+// GET a podcast
+router.get("/:id", getPodcast);
 
 // DELETE a podcast
 router.delete("/:id", deletePodcast);

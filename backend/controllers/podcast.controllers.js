@@ -66,6 +66,22 @@ const addPodcast = async (req, res) => {
   }
 };
 
+const getPodcast = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "invalid podcast identifier" });
+  }
+
+  const podcast = await Podcast.findById({ _id: id });
+
+  if (!podcast) {
+    return res.status(400).json({ error: "podcast not found" });
+  }
+
+  res.status(200).json(podcast);
+};
+
 const deletePodcast = async (req, res) => {
   const { id } = req.params;
 
@@ -103,4 +119,10 @@ const updatePodcast = async (req, res) => {
   res.status(200).json(podcast);
 };
 
-module.exports = { getFeed, addPodcast, deletePodcast, updatePodcast };
+module.exports = {
+  getFeed,
+  addPodcast,
+  getPodcast,
+  deletePodcast,
+  updatePodcast,
+};

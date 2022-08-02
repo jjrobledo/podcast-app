@@ -1,16 +1,51 @@
+import { Link } from "react-router-dom";
+import { Grid, Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Box from "@mui/material/Box";
+import { usePodcastsContext } from "../hooks/usePodcastsContext";
+
 const PodcastCard = ({ podcast }) => {
+  const { dispatch } = usePodcastsContext();
+  const handleClick = async () => {
+    console.log(324);
+    const response = await fetch("/api/podcasts/" + podcast._id, {
+      method: "DELETE",
+    });
+
+    const json = await response.json();
+    console.log(json);
+    if (response.ok) {
+      dispatch({ type: "DELETE_PODCAST", payload: json });
+    }
+  };
+
   return (
-    <div className="card">
-      <img
-        src={podcast.image.url}
-        className="card-img-top"
-        alt={podcast.title}
+    <Card elevation="3" sx={{ height: "100%" }}>
+      <CardHeader
+        action={
+          <IconButton onClick={handleClick}>
+            <DeleteIcon />
+          </IconButton>
+        }
+        title={podcast.title}
       />
-      <div className="card-body">
-        <h2 className="card-title">{podcast.title}</h2>
-        <p className="card-text">{podcast.description}</p>
-      </div>
-    </div>
+      <Link to={`/${podcast._id}`}>
+        <img
+          src={podcast.image.url}
+          className="card-img-top"
+          alt={podcast.title}
+        />
+      </Link>
+      <CardContent>
+        <Box>
+          <Typography variant="body2">{podcast.description}</Typography>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 
