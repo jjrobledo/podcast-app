@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import { Grid, Typography } from "@mui/material";
+import { Player } from "../components/Player.component";
 
 import PodcastCard from "../components/PodcastCard.component";
 
@@ -28,11 +29,7 @@ const Home = () => {
         {podcasts &&
           podcasts.map((podcast) => (
             <Grid item xs={12} sm={5} lg={3} pr={1}>
-              <PodcastCard
-                key={podcast._id}
-                podcast={podcast}
-                /* deletePodcastHandler={deletePodcastHandler} */
-              />
+              <PodcastCard key={podcast._id} podcast={podcast} />
             </Grid>
           ))}
       </Grid>

@@ -11,14 +11,16 @@ import parse from "html-react-parser";
 const PodCastList = ({ podcast }) => {
   return (
     <Grid item>
-      <Accordion TransitionProps={{ unmountOnExit: true }}>
+      <Accordion
+        TransitionProps={{ unmountOnExit: true }}
+        sx={{ marginTop: 1 }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <Typography>
-            <p>asdfsdf</p>
             {podcast.title} -
             {formatDistanceToNow(new Date(podcast.pubDate), {
               addSuffix: true,

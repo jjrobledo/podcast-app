@@ -11,7 +11,6 @@ import { usePodcastsContext } from "../hooks/usePodcastsContext";
 const PodcastCard = ({ podcast }) => {
   const { dispatch } = usePodcastsContext();
   const handleClick = async () => {
-    console.log(324);
     const response = await fetch("/api/podcasts/" + podcast._id, {
       method: "DELETE",
     });
