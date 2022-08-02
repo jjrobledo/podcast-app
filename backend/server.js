@@ -20,7 +20,7 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       console.log(
-        `Connected to MongoDb ➡️ 🖥️. Server listening on port ${PORT} 🎧`
+        `➡️ Connected to MongoDb 🖥️. Server listening on port ${PORT} 🎧`
       );
     });
   })
