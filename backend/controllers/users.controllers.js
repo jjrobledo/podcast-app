@@ -1,11 +1,11 @@
-const { user1 } = require("../models/user.model.js");
+//const { User } = require("../models/user.model.js");
 
-const getPodcastFromFeed = require("podparse");
+const loginUser = async (req, res) => {
+  res.json({ msg: "login user" });
+};
 
-fetch(user1.feedList[0])
-  .then((res) => res.text())
-  .then((data) => {
-    const podcast = getPodcastFromFeed(data);
-    //console.log(podcast.meta);
-    console.log(Array.isArray(podcast.episodes));
-  });
+const signupUser = async (req, res) => {
+  res.json({ msg: "Signup user" });
+};
+
+module.exports = { loginUser, signupUser };
