@@ -1,18 +1,24 @@
 import * as React from "react";
 import { useState } from "react";
+import { useLogout } from "../hooks/useLogout.hook";
 import { Link } from "react-router-dom";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Toolbar } from "@mui/material";
+import { Toolbar, Button } from "@mui/material";
 import Container from "@mui/material/Container";
 
 import TextField from "@mui/material/TextField";
 
 const Navbar = () => {
+  const { logout } = useLogout();
   const { dispatch } = usePodcastsContext();
   const [addText, setAddText] = useState("");
+
+  const handleClick = () => {
+    logout();
+  };
 
   const handleEnter = async (e) => {
     if (e.key === "Enter") {
@@ -83,6 +89,16 @@ const Navbar = () => {
               alignItems={"center"}
               justifyContent={"center"}
             >
+              {" "}
+              <Button
+                onClick={handleClick}
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                }}
+              >
+                <Typography marginRight={3}>Logout</Typography>
+              </Button>
               <Link
                 to="/login"
                 style={{
