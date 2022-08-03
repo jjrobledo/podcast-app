@@ -17,12 +17,12 @@ app.use("/api/user", userRoutes);
 // Accessing the path module
 const path = require("path");
 
-// Step 1:
-app.use(express.static(path.resolve(__dirname, "../frontend/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
-});
+// // Step 1:
+// app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+// // Step 2:
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+// });
 
 mongoose
   .connect(process.env.MONGO_URI)

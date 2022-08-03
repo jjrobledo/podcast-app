@@ -6,7 +6,11 @@ const {
   deletePodcast,
   updatePodcast,
 } = require("../controllers/podcast.controllers.js");
+const authenticate = require("../middleware/auth.middleware");
+
 const router = express.Router();
+
+router.use(authenticate);
 
 // Get feed
 router.get("/", getFeed);
