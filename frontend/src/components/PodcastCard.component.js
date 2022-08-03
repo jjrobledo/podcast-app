@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -6,6 +7,17 @@ import CardContent from "@mui/material/CardContent";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
+import { CardActionArea } from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { styled } from "@mui/material/styles";
+
+import CardMedia from "@mui/material/CardMedia";
+
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import { useAuthContext } from "../hooks/useAuthContext.hook";
 
@@ -29,25 +41,34 @@ const PodcastCard = ({ podcast }) => {
   };
 
   return (
-    <Card elevation="3" sx={{ height: "100%" }}>
+    <Card>
       <CardHeader
-        action={
+        /*         sx={{ minHeight: 125, minWidth: 250 }}
+         */ action={
           <IconButton onClick={handleClick}>
             <DeleteIcon />
           </IconButton>
         }
         title={podcast.title}
+        subheader={
+          podcast.lastBuildDate
+            ? formatDistanceToNow(new Date(podcast.lastBuildDate), {
+                addSuffix: true,
+              })
+            : "invalid date"
+        }
       />
-      <Link to={`/${podcast._id}`}>
-        <img
-          src={podcast.image.url}
-          className="card-img-top"
-          alt={podcast.title}
-        />
-      </Link>
+      <CardMedia
+        component="img"
+        height="250"
+        image={podcast.image.url}
+        alt={podcast.title}
+      />
       <CardContent>
-        <Box>
-          <Typography variant="body2">{podcast.description}</Typography>
+        <Box sx={{ height: 75, overflow: "auto" }}>
+          <Typography variant="body2" color="text.secondary">
+            {podcast.description}
+          </Typography>
         </Box>
       </CardContent>
     </Card>

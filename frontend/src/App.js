@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext.hook";
 import Layout from "./components/Layout.component";
-import Home from "./pages/Home.pages";
+import UserFeed from "./pages/UserFeed.page";
 import Signup from "./pages/Signup.page";
 import Login from "./pages/Login.page";
 
-import Podcast from "./pages/Podcast.pages";
+import Podcast from "./pages/Podcast.page";
 
 function App() {
   // get user from useAuthContext hook
@@ -18,7 +18,7 @@ function App() {
             {/* if user is not logged in send them to the login page */}
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={user ? <UserFeed /> : <Navigate to="/login" />}
             />
             {/* if user is not logged in send them to the login page */}
             <Route

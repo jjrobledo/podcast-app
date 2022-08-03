@@ -6,7 +6,7 @@ import { Player } from "../components/Player.component";
 
 import PodcastCard from "../components/PodcastCard.component";
 
-const Home = () => {
+const UserFeed = () => {
   const { podcasts, dispatch } = usePodcastsContext();
   // get the user from the useAuthContext hook
   const { user } = useAuthContext();
@@ -48,4 +48,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserFeed;
