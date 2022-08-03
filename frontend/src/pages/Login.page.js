@@ -13,7 +13,6 @@ const Login = () => {
   };
 
   const handleLoginEnter = async (e) => {
-    console.log(e);
     if (e.key === "Enter") {
       await login(email, password);
     }

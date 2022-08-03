@@ -120,7 +120,7 @@ const Navbar = () => {
                     }}
                     id="outlined"
                     margin="dense"
-                    defaultValue={"Add Feed URL"}
+                    defaultValue="Add Feed Url"
                     variant="outlined"
                     onKeyPress={handleAddPodcastEnter}
                   />

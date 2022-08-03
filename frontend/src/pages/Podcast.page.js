@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import { Player } from "../components/Player.component";
 
 import PodcastList from "../components/PodcastList.component";
+import UpdatePodcastInput from "../components/UpdatePodcast.component";
 
 const Podcast = () => {
   const { id } = useParams();
@@ -29,13 +30,12 @@ const Podcast = () => {
     }
   }, []);
   return (
-    <div>
+    <div id="234">
       <Player />
+      <UpdatePodcastInput />
       {episodes &&
-        episodes.episodes.map((podcast) => (
-          <div>
-            <PodcastList key={podcast._id} podcast={podcast} />
-          </div>
+        episodes.episodes.map((episode) => (
+          <PodcastList key={episode.guid} podcast={episode} />
         ))}
     </div>
   );

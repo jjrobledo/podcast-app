@@ -35,8 +35,8 @@ const UserFeed = () => {
       <Grid container spacing={5} sx={{ marginTop: 2 }}>
         {podcasts &&
           podcasts.map((podcast) => (
-            <Grid item xs={12} sm={4} lg={4} pr={1}>
-              <PodcastCard key={podcast._id} podcast={podcast} />
+            <Grid key={podcast._id} item xs={12} sm={4} lg={4} pr={1}>
+              <PodcastCard podcast={podcast} />
             </Grid>
           ))}
       </Grid>

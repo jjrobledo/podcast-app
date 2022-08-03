@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -25,7 +25,6 @@ const PodcastCard = ({ podcast }) => {
     });
 
     const json = await response.json();
-    console.log(json);
     if (response.ok) {
       dispatch({ type: "DELETE_PODCAST", payload: json });
     }

@@ -18,8 +18,6 @@ import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 
 const PodCastList = ({ podcast }) => {
-  const theme = useTheme();
-  //console.log(podcast.image);
   return (
     <Card sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
       <CardMedia

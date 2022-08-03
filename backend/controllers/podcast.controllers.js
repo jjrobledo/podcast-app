@@ -99,6 +99,7 @@ const deletePodcast = async (req, res) => {
 };
 
 const updatePodcast = async (req, res) => {
+  console.log(req.body);
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
