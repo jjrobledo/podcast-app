@@ -12,6 +12,13 @@ const Login = () => {
     await login(email, password);
   };
 
+  const handleLoginEnter = async (e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      await login(email, password);
+    }
+  };
+
   return (
     <div>
       <form>
@@ -44,6 +51,7 @@ const Login = () => {
             variant="standard"
             placeholder="Password"
             margin="normal"
+            onKeyPress={handleLoginEnter}
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />

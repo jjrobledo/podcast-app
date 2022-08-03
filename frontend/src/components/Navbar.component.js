@@ -17,12 +17,12 @@ const Navbar = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePodcastsContext();
   const [addText, setAddText] = useState("");
-  console.log("usr: ", user);
+
   const handleClick = () => {
     logout();
   };
 
-  const handleEnter = async (e) => {
+  const handleAddPodcastEnter = async (e) => {
     if (e.key === "Enter") {
       const response = await fetch("/api/podcasts/", {
         method: "POST",
@@ -92,7 +92,7 @@ const Navbar = () => {
               justifyContent={"center"}
             >
               {user && (
-                <div>
+                <>
                   <Typography>{user.email}</Typography>
                   <Button
                     onClick={handleClick}
@@ -116,12 +116,12 @@ const Navbar = () => {
                     margin="dense"
                     defaultValue={"Add Feed URL"}
                     variant="outlined"
-                    onKeyPress={handleEnter}
+                    onKeyPress={handleAddPodcastEnter}
                   />
-                </div>
+                </>
               )}
               {!user && (
-                <div>
+                <>
                   <Link
                     to="/login"
                     style={{
@@ -137,7 +137,7 @@ const Navbar = () => {
                   >
                     <Typography marginRight={3}>Signup</Typography>
                   </Link>
-                </div>
+                </>
               )}
             </Box>
           </Box>
