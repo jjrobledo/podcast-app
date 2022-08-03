@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import { useLogout } from "../hooks/useLogout.hook";
-import { useAuthContext } from "../hooks/useAuthContext.hook";
 import { Link } from "react-router-dom";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
+import { useAuthContext } from "../hooks/useAuthContext.hook";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -23,12 +23,18 @@ const Navbar = () => {
   };
 
   const handleAddPodcastEnter = async (e) => {
+    // check if user and return if false
+    if (!user) {
+      throw new Error("Client not logged in");
+      return;
+    }
     if (e.key === "Enter") {
       const response = await fetch("/api/podcasts/", {
         method: "POST",
         body: JSON.stringify({ url: e.target.value }),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
       });
 

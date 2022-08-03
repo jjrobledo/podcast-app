@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
+import { useAuthContext } from "../hooks/useAuthContext.hook";
 import { Grid, Typography } from "@mui/material";
 import { Player } from "../components/Player.component";
 
@@ -7,9 +8,16 @@ import PodcastCard from "../components/PodcastCard.component";
 
 const Home = () => {
   const { podcasts, dispatch } = usePodcastsContext();
+  // get the user from the useAuthContext hook
+  const { user } = useAuthContext();
+
   useEffect(() => {
     const fetchPodcasts = async () => {
-      const response = await fetch("/api/podcasts");
+      const response = await fetch("/api/podcasts", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -17,8 +25,11 @@ const Home = () => {
       }
     };
 
-    fetchPodcasts();
-  }, [dispatch]);
+    // if user exists fetch the podcasts
+    if (user) {
+      fetchPodcasts();
+    }
+  }, [dispatch, user]);
 
   return (
     <>

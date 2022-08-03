@@ -7,12 +7,18 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
+import { useAuthContext } from "../hooks/useAuthContext.hook";
 
 const PodcastCard = ({ podcast }) => {
   const { dispatch } = usePodcastsContext();
+  const { user } = useAuthContext();
+
   const handleClick = async () => {
     const response = await fetch("/api/podcasts/" + podcast._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
 
     const json = await response.json();

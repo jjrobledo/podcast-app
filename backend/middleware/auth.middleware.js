@@ -18,7 +18,7 @@ const authenticate = async (req, res, next) => {
 
     // find user by id stored in the token then use select method to only get the id back
     // and add a userID to the request
-    req.userID = await User.findOne({ _id }).select("_id");
+    req.user = await User.findOne({ _id }).select("_id");
     next();
   } catch (error) {
     console.log(error);
