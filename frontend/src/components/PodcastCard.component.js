@@ -4,20 +4,11 @@ import { Grid, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
-import { CardActionArea } from "@mui/material";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import { styled } from "@mui/material/styles";
-
 import CardMedia from "@mui/material/CardMedia";
-
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import { useAuthContext } from "../hooks/useAuthContext.hook";
 
@@ -55,7 +46,9 @@ const PodcastCard = ({ podcast }) => {
             ? formatDistanceToNow(new Date(podcast.lastBuildDate), {
                 addSuffix: true,
               })
-            : "invalid date"
+            : formatDistanceToNow(new Date(podcast.episodes[0].pubDate), {
+                addSuffix: true,
+              })
         }
       />
       <Link to={`/${podcast._id}`} style={{ textDecoration: "none" }}>

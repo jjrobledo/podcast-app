@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext.hook";
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
+import { Player } from "../components/Player.component";
 
 import PodcastList from "../components/PodcastList.component";
 
@@ -29,6 +30,7 @@ const Podcast = () => {
   }, []);
   return (
     <div>
+      <Player />
       {episodes &&
         episodes.episodes.map((podcast) => (
           <div>

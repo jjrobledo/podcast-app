@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import { useAuthContext } from "../hooks/useAuthContext.hook";
-import { Grid, Typography } from "@mui/material";
-import { Player } from "../components/Player.component";
+import { Grid } from "@mui/material";
 
 import PodcastCard from "../components/PodcastCard.component";
 
@@ -33,13 +32,10 @@ const UserFeed = () => {
 
   return (
     <>
-      <Typography variant="h1" sx={{ marginTop: 2 }}>
-        Feed:
-      </Typography>
-      <Grid container spacing={5} sx={{}}>
+      <Grid container spacing={5} sx={{ marginTop: 2 }}>
         {podcasts &&
           podcasts.map((podcast) => (
-            <Grid item xs={12} sm={5} lg={3} pr={1}>
+            <Grid item xs={12} sm={4} lg={4} pr={1}>
               <PodcastCard key={podcast._id} podcast={podcast} />
             </Grid>
           ))}
