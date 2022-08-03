@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin.hook";
 
 import { Box, Typography, TextField, Button, Link } from "@mui/material";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    await login(email, password);
   };
 
   return (
@@ -50,12 +52,14 @@ const Login = () => {
             variant="contained"
             sx={{ marginTop: 4 }}
             onClick={handleSubmit}
+            disabled={isLoading}
           >
             Login
           </Button>
           <Link href="/signup" underline="hover">
             <Button sx={{ marginTop: 4 }}>Signup</Button>
           </Link>
+          {error && <Typography style={{ color: "red" }}>{error}</Typography>}
         </Box>
       </form>
     </div>
