@@ -19,7 +19,7 @@ const userSchema = new Schema({
 // static signup method
 userSchema.statics.signup = async function (email, password) {
   if (!email || !password) {
-    throw Error("Please add all fields");
+    throw Error("Please fill in all fields");
   }
 
   if (!validator.isEmail(email)) {
@@ -46,7 +46,7 @@ userSchema.statics.signup = async function (email, password) {
 
 userSchema.statics.login = async function (email, password) {
   if (!email || !password) {
-    throw Error("Please add all fields");
+    throw Error("Please fill in all fields");
   }
 
   const user = await this.findOne({ email });

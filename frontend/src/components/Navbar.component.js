@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { useLogout } from "../hooks/useLogout.hook";
+import { useAuthContext } from "../hooks/useAuthContext.hook";
 import { Link } from "react-router-dom";
 import { usePodcastsContext } from "../hooks/usePodcastsContext";
 import AppBar from "@mui/material/AppBar";
@@ -13,9 +14,10 @@ import TextField from "@mui/material/TextField";
 
 const Navbar = () => {
   const { logout } = useLogout();
+  const { user } = useAuthContext();
   const { dispatch } = usePodcastsContext();
   const [addText, setAddText] = useState("");
-
+  console.log("usr: ", user);
   const handleClick = () => {
     logout();
   };
@@ -89,46 +91,54 @@ const Navbar = () => {
               alignItems={"center"}
               justifyContent={"center"}
             >
-              {" "}
-              <Button
-                onClick={handleClick}
-                style={{
-                  textDecoration: "none",
-                  color: "#fff",
-                }}
-              >
-                <Typography marginRight={3}>Logout</Typography>
-              </Button>
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: "none",
-                  color: "#fff",
-                }}
-              >
-                <Typography marginRight={3}>Login</Typography>
-              </Link>
-              <Link
-                to="/signup"
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                <Typography marginRight={3}>Signup</Typography>
-              </Link>
-              <TextField
-                sx={{
-                  "& .MuiInputBase-root": {
-                    height: "2.5rem",
-                    color: "#fff",
-                    border: "1px solid #fff",
-                    padding: "2px",
-                  },
-                }}
-                id="outlined"
-                margin="dense"
-                defaultValue={"Add Feed URL"}
-                variant="outlined"
-                onKeyPress={handleEnter}
-              />
+              {user && (
+                <div>
+                  <Typography>{user.email}</Typography>
+                  <Button
+                    onClick={handleClick}
+                    style={{
+                      textDecoration: "none",
+                      color: "#fff",
+                    }}
+                  >
+                    <Typography marginRight={3}>Logout</Typography>
+                  </Button>
+                  <TextField
+                    sx={{
+                      "& .MuiInputBase-root": {
+                        height: "2.5rem",
+                        color: "#fff",
+                        border: "1px solid #fff",
+                        padding: "2px",
+                      },
+                    }}
+                    id="outlined"
+                    margin="dense"
+                    defaultValue={"Add Feed URL"}
+                    variant="outlined"
+                    onKeyPress={handleEnter}
+                  />
+                </div>
+              )}
+              {!user && (
+                <div>
+                  <Link
+                    to="/login"
+                    style={{
+                      textDecoration: "none",
+                      color: "#fff",
+                    }}
+                  >
+                    <Typography marginRight={3}>Login</Typography>
+                  </Link>
+                  <Link
+                    to="/signup"
+                    style={{ textDecoration: "none", color: "#fff" }}
+                  >
+                    <Typography marginRight={3}>Signup</Typography>
+                  </Link>
+                </div>
+              )}
             </Box>
           </Box>
         </Toolbar>
