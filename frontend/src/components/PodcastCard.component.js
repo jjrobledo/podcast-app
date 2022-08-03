@@ -58,19 +58,21 @@ const PodcastCard = ({ podcast }) => {
             : "invalid date"
         }
       />
-      <CardMedia
-        component="img"
-        height="250"
-        image={podcast.image.url}
-        alt={podcast.title}
-      />
-      <CardContent>
-        <Box sx={{ height: 75, overflow: "auto" }}>
-          <Typography variant="body2" color="text.secondary">
-            {podcast.description}
-          </Typography>
-        </Box>
-      </CardContent>
+      <Link to={`/${podcast._id}`} style={{ textDecoration: "none" }}>
+        <CardMedia
+          component="img"
+          height="250"
+          image={podcast.image.url}
+          alt={podcast.title}
+        />
+        <CardContent>
+          <Box sx={{ height: 75, overflow: "auto" }}>
+            <Typography variant="body2" color="text.secondary">
+              {podcast.description}
+            </Typography>
+          </Box>
+        </CardContent>
+      </Link>
     </Card>
   );
 };
