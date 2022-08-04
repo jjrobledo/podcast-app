@@ -4,7 +4,7 @@ A podcast app where users can login and add their favorite podcasts to their fee
 
 ## Technologies Used
 
-- JavaScript - Node - React - MongoDB
+- JavaScript - Node - React - MongoDB - JWT
 
 ## Screenshots:
 
