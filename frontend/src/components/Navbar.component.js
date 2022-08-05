@@ -42,6 +42,7 @@ const Navbar = () => {
 
       if (response.ok) {
         setAddText("");
+        // dispatch the new podcast to the context provider and rerender
         dispatch({ type: "ADD_PODCAST", payload: json });
       }
     }

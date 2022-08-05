@@ -6,10 +6,10 @@ import { Grid } from "@mui/material";
 import PodcastCard from "../components/PodcastCard.component";
 
 const UserFeed = () => {
+  // get the podcast state and dispatch from the podcast context hook
   const { podcasts, dispatch } = usePodcastsContext();
-  // get the user from the useAuthContext hook
   const { user } = useAuthContext();
-
+  // useEffect fires the fetch function when UserFeed compnent is rendered
   useEffect(() => {
     const fetchPodcasts = async () => {
       const response = await fetch("/api/podcasts", {
@@ -20,6 +20,8 @@ const UserFeed = () => {
       const json = await response.json();
 
       if (response.ok) {
+        // if the response is ok dispach the payload object and rerender
+        // the payload from this fetch will be all of the podcasts saved by the user
         dispatch({ type: "GET_PODCASTS", payload: json });
       }
     };
@@ -28,6 +30,7 @@ const UserFeed = () => {
     if (user) {
       fetchPodcasts();
     }
+    // fire fetch on dispatch or user
   }, [dispatch, user]);
 
   return (
