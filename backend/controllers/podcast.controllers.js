@@ -15,7 +15,7 @@ const addPodcast = (req, res) => {
   }
 
   const podcastData = fetch(url)
-    .then((res) => res.json())
+    .then((res) => res.text())
     .then((data) => {
       try {
         return getPodcastFromFeed(data);
