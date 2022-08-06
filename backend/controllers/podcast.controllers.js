@@ -15,7 +15,7 @@ const addPodcast = async (req, res) => {
   }
 
   const podcastData = await fetch(url)
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((data) => {
       try {
         return getPodcastFromFeed(data);
