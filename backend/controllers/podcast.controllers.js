@@ -7,15 +7,15 @@ const getFeed = async (req, res) => {
   res.status(200).json(feed);
 };
 
-const addPodcast = async (req, res) => {
+const addPodcast = (req, res) => {
   const { url } = req.body;
 
   if (!url) {
     return res.status(400).json({ error: "invalid url" });
   }
 
-  const podcastData = await fetch(url)
-    .then((res) => res.json())
+  const podcastData = fetch(url)
+    .then((res) => res.text())
     .then((data) => {
       try {
         return getPodcastFromFeed(data);
@@ -44,7 +44,7 @@ const addPodcast = async (req, res) => {
       episodes,
     } = podcastData;
 
-    const podcast = await Podcast.create({
+    const podcast = Podcast.create({
       title,
       description,
       subtitle,
