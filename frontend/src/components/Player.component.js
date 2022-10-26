@@ -5,7 +5,7 @@ import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import PauseIcon from "@mui/icons-material/Pause";
 
-const Player = () => {
+const Player = ({ nowPlaying }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -71,11 +71,7 @@ const Player = () => {
 
   return (
     <div>
-      <audio
-        ref={audioPlayer}
-        src="https://traffic.libsyn.com/secure/revolutionspodcast/001-_The_Kingdoms_of_Charles_Stuart.mp3"
-        preload="metadata"
-      ></audio>
+      <audio ref={audioPlayer} src={nowPlaying} preload="metadata"></audio>
       <button onClick={backThirty}>Back 30 </button>
       <button onClick={togglePlayPause}>
         {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}

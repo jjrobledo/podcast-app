@@ -17,7 +17,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 
-const PodCastList = ({ podcast }) => {
+const PodCastList = ({ podcast, setNowPlaying }) => {
+  const handleClickPlay = () => {
+    setNowPlaying(podcast.enclosure.url);
+  };
+
   return (
     <Card sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
       <CardMedia
@@ -27,7 +31,7 @@ const PodCastList = ({ podcast }) => {
         alt={podcast.title}
       />
       <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-        <IconButton aria-label="play/pause">
+        <IconButton aria-label="play/pause" onClick={handleClickPlay}>
           <PlayArrowIcon sx={{ height: 38, width: 38 }} />
         </IconButton>
       </Box>
