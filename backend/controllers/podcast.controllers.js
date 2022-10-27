@@ -59,6 +59,7 @@ const addPodcast = async (req, res) => {
       lastBuildDate,
       link,
       episodes,
+      feedURL: url,
     });
     res.status(200).json(podcast);
   } catch (error) {
