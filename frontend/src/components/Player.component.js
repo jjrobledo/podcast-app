@@ -4,9 +4,11 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import PauseIcon from "@mui/icons-material/Pause";
+import usePlayer from "../hooks/usePlayer.hook";
 
-const Player = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const Player = ({ nowPlaying }) => {
+  const { isPlaying, togglePlayPause } = usePlayer();
+  //const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -27,7 +29,8 @@ const Player = () => {
     const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
     return `${returnedMinutes}:${returnedSeconds}`;
   };
-  const togglePlayPause = () => {
+
+  /*   const togglePlayPause = () => {
     const prevValue = isPlaying;
 
     setIsPlaying(!isPlaying);
@@ -38,7 +41,7 @@ const Player = () => {
       audioPlayer.current.pause();
       cancelAnimationFrame(animationRef.current);
     }
-  };
+  }; */
 
   const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
@@ -71,11 +74,7 @@ const Player = () => {
 
   return (
     <div>
-      <audio
-        ref={audioPlayer}
-        src="https://traffic.libsyn.com/secure/revolutionspodcast/001-_The_Kingdoms_of_Charles_Stuart.mp3"
-        preload="metadata"
-      ></audio>
+      <audio ref={audioPlayer} src={nowPlaying} preload="metadata"></audio>
       <button onClick={backThirty}>Back 30 </button>
       <button onClick={togglePlayPause}>
         {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}

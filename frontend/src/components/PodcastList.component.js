@@ -1,12 +1,5 @@
-import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { Grid } from "@mui/material";
-import parse from "html-react-parser";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
@@ -16,8 +9,18 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
+import usePlayer from "../hooks/usePlayer.hook";
 
-const PodCastList = ({ podcast }) => {
+const PodCastList = ({ podcast, setNowPlaying }) => {
+  //const [state, setState] = useContext(PlayerContext);
+  const { playPodcast, togglePlayPause } = usePlayer();
+
+  const handleClickPlay = () => {
+    //setState((state) => ({ ...state, name: "clicked" }));
+    playPodcast(podcast.enclosure.url);
+    //setNowPlaying(podcast.enclosure.url);
+  };
+
   return (
     <Card sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
       <CardMedia
@@ -27,7 +30,7 @@ const PodCastList = ({ podcast }) => {
         alt={podcast.title}
       />
       <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-        <IconButton aria-label="play/pause">
+        <IconButton aria-label="play/pause" onClick={handleClickPlay}>
           <PlayArrowIcon sx={{ height: 38, width: 38 }} />
         </IconButton>
       </Box>
