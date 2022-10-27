@@ -25,6 +25,6 @@ router.get("/:id", getPodcast);
 router.delete("/:id", deletePodcast);
 
 // UPDATE a feed
-router.patch("/:id", updatePodcast);
+router.patch("/", updatePodcast);
 
 module.exports = router;

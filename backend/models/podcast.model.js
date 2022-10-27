@@ -14,6 +14,7 @@ const podcastSchema = new mongoose.Schema({
   explicit: Boolean,
   lastBuildDate: String,
   link: String,
+  feedURL: String,
   episodes: Array,
 });
 

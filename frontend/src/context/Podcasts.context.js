@@ -24,6 +24,10 @@ export const podcastReducer = (state, action) => {
           (podcast) => podcast._id !== action.payload._id
         ),
       };
+    case "UPDATE_PODCASTS":
+      return {
+        podcasts: action.payload,
+      };
     default:
       return state;
   }
