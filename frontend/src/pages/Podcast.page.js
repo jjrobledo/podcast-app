@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Player } from "../components/Player.component";
 import { Paginator } from "../components/Pagination.component";
-
 import PodcastList from "../components/PodcastList.component";
 
 const Podcast = () => {
