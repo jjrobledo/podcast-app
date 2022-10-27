@@ -100,25 +100,77 @@ const deletePodcast = async (req, res) => {
 };
 
 const updatePodcast = async (req, res) => {
-  console.log(req.body);
-  const { id } = req.params;
+  console.log("updating");
+  const feed = await Podcast.find({});
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "invalid podcast identifier" });
-  }
-
-  const podcast = await Podcast.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
+  feed.forEach((podcast) => {
+    try {
+      getPodcastData(req, res, podcast);
+    } catch (error) {
+      console.log(error);
+      return res.status(400);
     }
-  );
+  });
 
-  if (!podcast) {
-    return res.status(400).json({ error: "podcast not found" });
+  console.log("update complete");
+  const newFeed = await Podcast.find({});
+  res.status(200).json(newFeed);
+};
+
+const getPodcastData = async (req, res, podcast) => {
+  const podcastData = await fetch(podcast.feedURL)
+    .then((res) => res.text())
+    .then((data) => {
+      try {
+        return getPodcastFromFeed(data);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+  try {
+    const {
+      meta: {
+        title,
+        description,
+        subtitle,
+        language,
+        author,
+        managingEditor,
+        keywords,
+        category,
+        owner,
+        image,
+        explicit,
+        lastBuildDate,
+        link,
+      },
+      episodes,
+    } = podcastData;
+
+    const result = await Podcast.findOneAndUpdate(
+      { _id: podcast._id },
+      {
+        title,
+        description,
+        subtitle,
+        language,
+        author,
+        managingEditor,
+        keywords,
+        category,
+        owner,
+        image,
+        explicit,
+        lastBuildDate,
+        link,
+        episodes,
+        feedURL: podcast.feedURL,
+      }
+    );
+  } catch (error) {
+    console.log(error);
   }
-
-  res.status(200).json(podcast);
 };
 
 module.exports = {

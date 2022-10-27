@@ -22,6 +22,29 @@ const Navbar = () => {
     logout();
   };
 
+  const handleUpdateFeed = async (e) => {
+    e.preventDefault();
+    // check if user and return if false
+    if (!user) {
+      throw new Error("Client not logged in");
+      return;
+    }
+
+    const response = await fetch("/api/podcasts/", {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    const json = await response.json();
+
+    if (response.ok) {
+      // dispatch the new podcast to the context provider and rerender
+      dispatch({ type: "UPDATE_PODCASTS", payload: json });
+    }
+  };
+
   const handleAddPodcastEnter = async (e) => {
     // check if user and return if false
     if (!user) {
@@ -69,6 +92,8 @@ const Navbar = () => {
           >
             PodcastApp
           </Typography>
+
+          <button onClick={handleUpdateFeed}>Update feed</button>
 
           <Typography
             variant="h5"
