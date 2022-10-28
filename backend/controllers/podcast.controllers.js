@@ -103,7 +103,7 @@ const updatePodcast = async (req, res) => {
   console.log("updating");
   const feed = await Podcast.find({});
 
-  feed.forEach((podcast) => {
+  await feed.forEach((podcast) => {
     try {
       getPodcastData(req, res, podcast);
     } catch (error) {
@@ -114,6 +114,7 @@ const updatePodcast = async (req, res) => {
 
   console.log("update complete");
   const newFeed = await Podcast.find({});
+  console.log(newFeed);
   res.status(200).json(newFeed);
 };
 
