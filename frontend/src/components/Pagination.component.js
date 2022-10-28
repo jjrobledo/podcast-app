@@ -6,7 +6,7 @@ import { Pagination } from "@mui/material";
 
 const pageSize = 10;
 
-const Paginator = ({ setPaginatedEpisodes }) => {
+const Paginator = ({ setPaginatedEpisodes, setPodcastInfo }) => {
   const { id } = useParams();
   const { user } = useAuthContext();
   const [pagination, setPagination] = useState({
@@ -25,10 +25,10 @@ const Paginator = ({ setPaginatedEpisodes }) => {
       const json = await response.json();
 
       if (response.ok) {
-        setPaginatedEpisodes(
-          json.episodes.slice(pagination.from, pagination.to)
-        );
-        setPagination({ ...pagination, count: json.episodes.length });
+        const { episodes, ...PodcastInfo } = json;
+        setPodcastInfo(PodcastInfo);
+        setPaginatedEpisodes(episodes.slice(pagination.from, pagination.to));
+        setPagination({ ...pagination, count: episodes.length });
       }
     };
     if (user) {
