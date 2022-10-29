@@ -20,8 +20,15 @@ const usePlayer = () => {
     }
   }
 
+  const playing = () => {
+    return state.isPlaying;
+  };
+
+  const url = () => {
+    return state.currentEpisodeURL;
+  };
+
   const togglePlayPause = () => {
-    console.log(state.isPlaying);
     setState((state) => ({ ...state, isPlaying: !state.isPlaying }));
 
     if (state.isPlaying) {
@@ -37,6 +44,8 @@ const usePlayer = () => {
   return {
     togglePlayPause,
     playPodcast,
+    playing,
+    url,
   };
 };
 

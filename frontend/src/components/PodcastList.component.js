@@ -1,24 +1,20 @@
 import Typography from "@mui/material/Typography";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
 import usePlayer from "../hooks/usePlayer.hook";
+import { PlayIcon } from "./PlayIcon.component";
 
-const PodCastList = ({ podcast, setNowPlaying }) => {
-  //const [state, setState] = useContext(PlayerContext);
-  const { playPodcast, togglePlayPause } = usePlayer();
+const PodCastList = ({ podcast }) => {
+  const { playPodcast } = usePlayer();
 
   const handleClickPlay = () => {
-    //setState((state) => ({ ...state, name: "clicked" }));
     playPodcast(podcast.enclosure.url);
-    //setNowPlaying(podcast.enclosure.url);
   };
 
   return (
@@ -26,13 +22,14 @@ const PodCastList = ({ podcast, setNowPlaying }) => {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image={podcast.image ? podcast.image.url : ""}
+        image={podcast.image?.url}
         alt={podcast.title}
       />
       <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-        <IconButton aria-label="play/pause" onClick={handleClickPlay}>
-          <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-        </IconButton>
+        <PlayIcon
+          handleClickPlay={handleClickPlay}
+          id={podcast.enclosure.url}
+        />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
@@ -44,7 +41,7 @@ const PodCastList = ({ podcast, setNowPlaying }) => {
             color="text.secondary"
             component="div"
           >
-            {podcast.title}
+            {podcast.subtitle || podcast.title}
           </Typography>
         </CardContent>
       </Box>

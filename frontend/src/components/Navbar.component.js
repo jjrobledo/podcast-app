@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Toolbar, Button } from "@mui/material";
 import Container from "@mui/material/Container";
+import { useLocation } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 
@@ -54,7 +55,7 @@ const Navbar = () => {
     if (e.key === "Enter") {
       const response = await fetch("/api/podcasts/", {
         method: "POST",
-        body: JSON.stringify({ url: e.target.value }),
+        body: JSON.stringify({ url: addText }),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user.token}`,
@@ -71,29 +72,38 @@ const Navbar = () => {
     }
   };
 
+  const resetInput = (e) => {
+    e.target.value = "";
+  };
+
+  const location = useLocation();
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "sans",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            PodcastApp
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "sans",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              PodcastApp
+            </Typography>
+          </Link>
 
-          <button onClick={handleUpdateFeed}>Update feed</button>
+          {user && location.pathname === "/" && (
+            <button onClick={handleUpdateFeed}>Update feed</button>
+          )}
 
           <Typography
             variant="h5"
@@ -146,7 +156,10 @@ const Navbar = () => {
                     }}
                     id="outlined"
                     margin="dense"
-                    defaultValue="Add Feed Url"
+                    onFocus={(e) => resetInput(e)}
+                    placeholder="Add Feed Url"
+                    value={addText}
+                    onChange={(e) => setAddText(e.target.value)}
                     variant="outlined"
                     onKeyPress={handleAddPodcastEnter}
                   />
