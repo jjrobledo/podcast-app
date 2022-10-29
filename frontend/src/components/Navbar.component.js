@@ -54,7 +54,7 @@ const Navbar = () => {
     if (e.key === "Enter") {
       const response = await fetch("/api/podcasts/", {
         method: "POST",
-        body: JSON.stringify({ url: e.target.value }),
+        body: JSON.stringify({ url: addText }),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user.token}`,
@@ -69,6 +69,10 @@ const Navbar = () => {
         dispatch({ type: "ADD_PODCAST", payload: json });
       }
     }
+  };
+
+  const resetInput = (e) => {
+    e.target.value = "";
   };
 
   return (
@@ -146,7 +150,10 @@ const Navbar = () => {
                     }}
                     id="outlined"
                     margin="dense"
-                    defaultValue="Add Feed Url"
+                    onFocus={(e) => resetInput(e)}
+                    placeholder="Add Feed Url"
+                    value={addText}
+                    onChange={(e) => setAddText(e.target.value)}
                     variant="outlined"
                     onKeyPress={handleAddPodcastEnter}
                   />
