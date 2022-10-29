@@ -22,7 +22,7 @@ const PodCastList = ({ podcast }) => {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image={podcast.image ? podcast.image.url : ""}
+        image={podcast.image?.url}
         alt={podcast.title}
       />
       <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
@@ -41,7 +41,7 @@ const PodCastList = ({ podcast }) => {
             color="text.secondary"
             component="div"
           >
-            {podcast.title}
+            {podcast.subtitle || podcast.title}
           </Typography>
         </CardContent>
       </Box>
