@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Toolbar, Button } from "@mui/material";
 import Container from "@mui/material/Container";
+import { useLocation } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 
@@ -75,6 +76,8 @@ const Navbar = () => {
     e.target.value = "";
   };
 
+  const location = useLocation();
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -97,7 +100,9 @@ const Navbar = () => {
             PodcastApp
           </Typography>
 
-          <button onClick={handleUpdateFeed}>Update feed</button>
+          {user && location.pathname === "/" && (
+            <button onClick={handleUpdateFeed}>Update feed</button>
+          )}
 
           <Typography
             variant="h5"
