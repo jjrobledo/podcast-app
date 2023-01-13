@@ -9,12 +9,10 @@ const UserFeed = () => {
   // get the podcast state and dispatch from the podcast context hook
   const { podcasts, dispatch } = usePodcastsContext();
   const { user } = useAuthContext();
-  const baseURL = "https://podcast-app.onrender.com";
   // useEffect fires the fetch function when UserFeed compnent is rendered
   useEffect(() => {
     const fetchPodcasts = async () => {
-      const response = await fetch(baseURL + "/api/podcasts", {
-        mode: "no-cors",
+      const response = await fetch("/api/podcasts", {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

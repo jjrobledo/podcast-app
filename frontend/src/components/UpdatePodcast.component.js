@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 const UpdatePodcastInput = () => {
   console.log(window.location.pathname.substring(1));
   const { user } = useAuthContext();
-  const baseURL = "https://podcast-app.onrender.com";
 
   const [addText, setAddText] = useState("");
 
@@ -20,9 +19,8 @@ const UpdatePodcastInput = () => {
     }
     if (e.key === "Enter") {
       const response = await fetch(
-        baseURL + "/api/podcasts/" + window.location.pathname,
+        "/api/podcasts/" + window.location.pathname,
         {
-          mode: "no-cors",
           method: "PATCH",
           body: JSON.stringify({
             _id: window.location.pathname.substring(1),

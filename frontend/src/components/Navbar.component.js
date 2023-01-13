@@ -18,7 +18,6 @@ const Navbar = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePodcastsContext();
   const [addText, setAddText] = useState("");
-  const baseURL = "https://podcast-app.onrender.com";
 
   const handleClick = () => {
     logout();
@@ -32,8 +31,7 @@ const Navbar = () => {
       return;
     }
 
-    const response = await fetch(baseURL + "/api/podcasts/", {
-      mode: "no-cors",
+    const response = await fetch("/api/podcasts/", {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -55,8 +53,7 @@ const Navbar = () => {
       return;
     }
     if (e.key === "Enter") {
-      const response = await fetch(baseURL + "/api/podcasts/", {
-        mode: "no-cors",
+      const response = await fetch("/api/podcasts/", {
         method: "POST",
         body: JSON.stringify({ url: addText }),
         headers: {
