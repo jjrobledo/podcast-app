@@ -1,5 +1,5 @@
 {
-  "proxy": "https://podcast-app.onrender.com",
+  "proxy": "podcast-app.onrender.com",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
