@@ -15,9 +15,11 @@ const Paginator = ({ setPaginatedEpisodes, setPodcastInfo }) => {
     to: pageSize,
   });
 
+  const baseURL = "https://podcast-app-fronend.onrender.com";
+
   useEffect(() => {
     const fetchEpisode = async () => {
-      const response = await fetch(`/api/podcasts/${id}`, {
+      const response = await fetch(baseURL + `/api/podcasts/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

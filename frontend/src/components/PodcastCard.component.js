@@ -15,9 +15,10 @@ import { useAuthContext } from "../hooks/useAuthContext.hook";
 const PodcastCard = ({ podcast }) => {
   const { dispatch } = usePodcastsContext();
   const { user } = useAuthContext();
+  const baseURL = "https://podcast-app-fronend.onrender.com";
 
   const handleClick = async () => {
-    const response = await fetch("/api/podcasts/" + podcast._id, {
+    const response = await fetch(baseURL + "/api/podcasts/" + podcast._id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,

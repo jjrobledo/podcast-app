@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 const UpdatePodcastInput = () => {
   console.log(window.location.pathname.substring(1));
   const { user } = useAuthContext();
+  const baseURL = "https://podcast-app-fronend.onrender.com";
 
   const [addText, setAddText] = useState("");
 
@@ -19,7 +20,7 @@ const UpdatePodcastInput = () => {
     }
     if (e.key === "Enter") {
       const response = await fetch(
-        "/api/podcasts/" + window.location.pathname,
+        baseURL + "/api/podcasts/" + window.location.pathname,
         {
           method: "PATCH",
           body: JSON.stringify({
