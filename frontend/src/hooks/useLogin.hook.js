@@ -5,7 +5,7 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
-  const baseURL = "https://podcast-app.onrender.com/";
+  const baseURL = "https://podcast-app.onrender.com";
 
   const login = async (email, password) => {
     setIsLoading(true);
