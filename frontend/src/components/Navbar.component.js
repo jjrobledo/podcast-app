@@ -33,6 +33,7 @@ const Navbar = () => {
     }
 
     const response = await fetch(baseURL + "/api/podcasts/", {
+      mode: "no-cors",
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -55,6 +56,7 @@ const Navbar = () => {
     }
     if (e.key === "Enter") {
       const response = await fetch(baseURL + "/api/podcasts/", {
+        mode: "no-cors",
         method: "POST",
         body: JSON.stringify({ url: addText }),
         headers: {

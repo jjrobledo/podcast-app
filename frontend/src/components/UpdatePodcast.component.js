@@ -22,6 +22,7 @@ const UpdatePodcastInput = () => {
       const response = await fetch(
         baseURL + "/api/podcasts/" + window.location.pathname,
         {
+          mode: "no-cors",
           method: "PATCH",
           body: JSON.stringify({
             _id: window.location.pathname.substring(1),

@@ -19,6 +19,7 @@ const PodcastCard = ({ podcast }) => {
 
   const handleClick = async () => {
     const response = await fetch(baseURL + "/api/podcasts/" + podcast._id, {
+      mode: "no-cors",
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,

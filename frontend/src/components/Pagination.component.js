@@ -20,6 +20,7 @@ const Paginator = ({ setPaginatedEpisodes, setPodcastInfo }) => {
   useEffect(() => {
     const fetchEpisode = async () => {
       const response = await fetch(baseURL + `/api/podcasts/${id}`, {
+        mode: "no-cors",
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

@@ -14,6 +14,7 @@ const UserFeed = () => {
   useEffect(() => {
     const fetchPodcasts = async () => {
       const response = await fetch(baseURL + "/api/podcasts", {
+        mode: "no-cors",
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
