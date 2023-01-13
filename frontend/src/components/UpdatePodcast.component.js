@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 const UpdatePodcastInput = () => {
   console.log(window.location.pathname.substring(1));
   const { user } = useAuthContext();
-  const baseURL = "https://podcast-app-fronend.onrender.com";
+  const baseURL = "https://podcast-app.onrender.com";
 
   const [addText, setAddText] = useState("");
 

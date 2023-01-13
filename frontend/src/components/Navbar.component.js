@@ -18,7 +18,7 @@ const Navbar = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePodcastsContext();
   const [addText, setAddText] = useState("");
-  const baseURL = "https://podcast-app-fronend.onrender.com";
+  const baseURL = "https://podcast-app.onrender.com";
 
   const handleClick = () => {
     logout();

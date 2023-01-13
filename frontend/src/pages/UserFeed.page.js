@@ -9,7 +9,7 @@ const UserFeed = () => {
   // get the podcast state and dispatch from the podcast context hook
   const { podcasts, dispatch } = usePodcastsContext();
   const { user } = useAuthContext();
-  const baseURL = "https://podcast-app-fronend.onrender.com";
+  const baseURL = "https://podcast-app.onrender.com";
   // useEffect fires the fetch function when UserFeed compnent is rendered
   useEffect(() => {
     const fetchPodcasts = async () => {

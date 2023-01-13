@@ -15,7 +15,7 @@ import { useAuthContext } from "../hooks/useAuthContext.hook";
 const PodcastCard = ({ podcast }) => {
   const { dispatch } = usePodcastsContext();
   const { user } = useAuthContext();
-  const baseURL = "https://podcast-app-fronend.onrender.com";
+  const baseURL = "https://podcast-app.onrender.com";
 
   const handleClick = async () => {
     const response = await fetch(baseURL + "/api/podcasts/" + podcast._id, {
