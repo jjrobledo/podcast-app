@@ -1,4 +1,4 @@
-const Podcast = require("../models/podcast.model");
+const Podcast = require("../../models/podcast.model");
 const mongoose = require("mongoose");
 const getPodcastFromFeed = require("podparse");
 
