@@ -24,6 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
     "morgan": "^1.10.0",
+    "pm2": "^5.3.0",
     "podparse": "^1.5.1",
     "validator": "^13.7.0"
   }
