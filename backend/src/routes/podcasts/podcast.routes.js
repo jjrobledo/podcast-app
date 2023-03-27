@@ -8,23 +8,23 @@ const {
 } = require("./podcast.controllers.js");
 const authenticate = require("../../middleware/auth.middleware");
 
-const router = express.Router();
+const podcastRouter = express.Router();
 
-router.use(authenticate);
+podcastRouter.use(authenticate);
 
 // Get feed
-router.get("/", getFeed);
+podcastRouter.get("/", getFeed);
 
 // POST a podcast
-router.post("/", addPodcast);
+podcastRouter.post("/", addPodcast);
 
 // GET a podcast
-router.get("/:id", getPodcast);
+podcastRouter.get("/:id", getPodcast);
 
 // DELETE a podcast
-router.delete("/:id", deletePodcast);
+podcastRouter.delete("/:id", deletePodcast);
 
 // UPDATE a feed
-router.patch("/", updatePodcast);
+podcastRouter.patch("/", updatePodcast);
 
-module.exports = router;
+module.exports = podcastRouter;
