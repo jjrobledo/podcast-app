@@ -11,8 +11,8 @@ const server = http.createServer(app);
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const podcastRoutes = require("../routes/podcast.routes");
-const userRoutes = require("../routes/user.routes");
+const podcastRoutes = require("./routes/podcasts/podcast.routes");
+const userRoutes = require("./routes/users/user.routes");
 
 const PORT = process.env.PORT || 5000;
 
