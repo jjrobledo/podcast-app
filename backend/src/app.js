@@ -1,16 +1,23 @@
+const path = require("path");
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 
-const userRoutes = require("./routes/users/user.routes");
-const podcastRoutes = require("./routes/podcasts/podcast.routes");
+const api = require("./routes/api");
 
-const api = express.Router();
+const app = express();
+
+app.use(cors());
 
 app.use(morgan("dev"));
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "public")));
 
-api.use("/users", userRoutes);
-api.use("/podcasts", podcastRoutes);
+app.use("/", api);
 
-module.exports = api;
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+})
+
+module.exports = app;
