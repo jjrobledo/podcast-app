@@ -47,30 +47,6 @@ const PodCastList = ({ podcast }) => {
       </Box>
     </Card>
   );
-
-  /*     <Grid item>
-      <Accordion
-        TransitionProps={{ unmountOnExit: true }}
-        sx={{ marginTop: 1 }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>
-            {podcast.title} -
-            {formatDistanceToNow(new Date(podcast.pubDate), {
-              addSuffix: true,
-            })}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>{parse(podcast.description)}</Typography>
-        </AccordionDetails>
-      </Accordion>
-    </Grid>
-  ); */
 };
 
 export default PodCastList;

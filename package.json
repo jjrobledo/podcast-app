@@ -1,0 +1,30 @@
+{
+  "name": "podcast-app",
+  "version": "1.0.0",
+  "description": "A podcast app where users can login and add their favorite podcasts to their feed",
+  "main": "index.js",
+  "scripts": {
+    "install-backend": "npm install --prefix backend",
+    "install-frontend": "npm install --prefix frontend",
+    "install": "npm run install-backend && npm run install-frontend",
+    "backend": "npm run watch --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "watch": "npm run backend & npm run frontend",
+    "deploy": "npm run build --prefix frontend && npm start --prefix backend",
+    "deploy-cluster": "npm run build --prefix frontend && npm run cluster --prefix backend",
+    "test": "npm test --prefix backend && npm test --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjrobledo/podcast-app.git"
+  },
+  "author": "Jesse Robledo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjrobledo/podcast-app/issues"
+  },
+  "homepage": "https://github.com/jjrobledo/podcast-app#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}

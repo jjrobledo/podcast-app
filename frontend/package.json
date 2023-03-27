@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:5000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -21,8 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "BUILD_PATH=../backend/public react-scripts build",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

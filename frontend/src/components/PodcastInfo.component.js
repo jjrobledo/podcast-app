@@ -10,7 +10,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 export default function PodcastInfo({ podcastInfo }) {
-  console.log(podcastInfo);
   return (
     <Card sx={{ minWidth: 275, marginTop: 5, marginBottom: 5 }}>
       <CardContent>

@@ -100,21 +100,17 @@ const deletePodcast = async (req, res) => {
 };
 
 const updatePodcast = async (req, res) => {
-  console.log("updating");
   const feed = await Podcast.find({});
 
   await feed.forEach((podcast) => {
     try {
       getPodcastData(req, res, podcast);
     } catch (error) {
-      console.log(error);
       return res.status(400);
     }
   });
 
-  console.log("update complete");
   const newFeed = await Podcast.find({});
-  console.log(newFeed);
   res.status(200).json(newFeed);
 };
 
