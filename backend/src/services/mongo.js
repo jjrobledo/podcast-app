@@ -6,7 +6,7 @@ require("dotenv").config({path: path.resolve(__dirname, "../.env")});
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connection.once("open", () => {
-    console.log("MongoDB connection ready!");
+    console.log("➡️ Connected to MongoDb 🖥️.");
 })
 
 mongoose.connection.on("error", (err) => {
